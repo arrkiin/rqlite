@@ -22,7 +22,7 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/raft"
-	"github.com/hashicorp/raft-boltdb"
+	raftboltdb "github.com/hashicorp/raft-boltdb"
 	sdb "github.com/rqlite/rqlite/db"
 )
 
@@ -281,7 +281,7 @@ func (s *Store) Open(enableSingle bool) error {
 	config.LocalID = raft.ServerID(s.raftID)
 	config.Logger = hclog.New(&hclog.LoggerOptions{
 		Output: os.Stderr,
-		Name: "[raft]",
+		Name:   "[raft]",
 	})
 
 	// Create the snapshot store. This allows Raft to truncate the log.
